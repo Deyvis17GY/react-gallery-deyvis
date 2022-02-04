@@ -11,9 +11,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Use SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.DEYVIS_SECRET}}" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+      - name: Git User Config
+        run: |
+          git config --global user.email "deyvisjaime17@gmail.com"
+          git config --global user.name "Deyvis17GY"
       - name: Install
         run: yarn install
       - name: Build
         run: yarn predeploy
       - name: Deploy
-        run: yarn deploy
+        run: yarn deploy -- -r git@github.com:Deyvis17GY/react-gallery-deyvis.git
