@@ -12,3 +12,21 @@
 .container-image-item:hover {
   cursor: pointer;
 }
+
+@media (max-width: 1199px) {
+  .container-image {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 991px) {
+  .container-image {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-image {
+    column-count: 1;
+  }
+}
