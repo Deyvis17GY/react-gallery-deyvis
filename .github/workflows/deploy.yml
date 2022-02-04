@@ -1,0 +1,19 @@
+name: Deploy app
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-to-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: yarn predeploy
+      - name: Deploy
+        run: yarn deploy
