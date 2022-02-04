@@ -66,7 +66,10 @@ export const ImageForm = () => {
               onChange={handleChange}
             />
             <div className='my-3'>
-              <button className='btn btn-success rounded-0 w-100'>
+              <button
+                disabled={loading}
+                className='btn btn-success rounded-0 w-100'
+              >
                 Upload
               </button>
             </div>

@@ -11,11 +11,14 @@ export const ImageDetail = () => {
   })
 
   const [isLoading, setIsLoading] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const handleDelete = async () => {
+    setIsDeleting(true)
     await axios.delete(
       `${process.env.REACT_APP_ENDPOINT}/api/images/${params.id}`
     )
+    setIsDeleting(false)
     history.push("/")
   }
 
@@ -40,7 +43,11 @@ export const ImageDetail = () => {
           )}
           <div className='card-body'>
             <h3>{image.title}</h3>
-            <button className='btn btn-outline-danger' onClick={handleDelete}>
+            <button
+              disabled={isDeleting}
+              className='btn btn-outline-danger'
+              onClick={handleDelete}
+            >
               Delete
             </button>
           </div>
