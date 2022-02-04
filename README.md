@@ -16,7 +16,7 @@ application to upload images to digital ocean (frontend and backend)
 
 - [Digital Ocean](https://www.digitalocean.com/) - Image storage
 - [Heroku](https://dashboard.heroku.com/) - Deployment backend
-- [GitHub Pages](https://pages.github.com/) - Deployment frontend
+- [Netlify](https://www.netlify.com/) - Deployment frontend
 
 ## Tech Stack
 
@@ -26,7 +26,7 @@ application to upload images to digital ocean (frontend and backend)
 
 ## Demo
 
-link to [React Gallery](https://deyvis17gy.github.io/react-gallery-deyvis/)
+link to [React Gallery](https://react-gallery-d.netlify.app/)
 
 ## Run Locally
 
