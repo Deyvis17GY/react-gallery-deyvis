@@ -19,7 +19,9 @@ export const ImageDetail = () => {
 
   useEffect(() => {
     ;(async () => {
-      const res = await axios.get(`/api/images/${params.id}`)
+      const res = await axios.get(
+        `${process.env.REACT_APP_ENDPOINT}/api/images/${params.id}`
+      )
       setImage(res.data)
       setIsLoading(true)
     })()

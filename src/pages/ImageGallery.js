@@ -4,10 +4,11 @@ import { useHistory } from "react-router-dom"
 export const ImageGallery = () => {
   const [images, setImages] = useState([])
   const history = useHistory()
-
   useEffect(() => {
     ;(async () => {
-      const res = await axios.get("/api/images")
+      const res = await axios.get(
+        `${process.env.REACT_APP_ENDPOINT}/api/images`
+      )
       setImages(res.data)
     })()
   }, [])
