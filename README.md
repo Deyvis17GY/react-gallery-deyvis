@@ -65,7 +65,7 @@ Start the server backend
 To deploy this project frontend
 
 ```bash
-  yarn deploy
+  yarn predeploy
 ```
 
 To deploy this project backend
