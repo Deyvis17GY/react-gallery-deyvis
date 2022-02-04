@@ -1,4 +1,14 @@
-.card-image:hover {
+.container-image {
+  width: 100%;
+  column-count: 3;
+  column-gap: 16px;
+}
+.container-image-item {
+  display: inline-block;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.container-image-item:hover {
   cursor: pointer;
-  border: 1px solid #fff;
 }
