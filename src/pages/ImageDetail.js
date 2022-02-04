@@ -13,7 +13,9 @@ export const ImageDetail = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleDelete = async () => {
-    await axios.delete(`/api/images/${params.id}`)
+    await axios.delete(
+      `${process.env.REACT_APP_ENDPOINT}/api/images/${params.id}`
+    )
     history.push("/")
   }
 
