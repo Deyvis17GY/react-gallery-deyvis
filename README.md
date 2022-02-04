@@ -86,7 +86,7 @@ To run this project, you will need to add the following environment variables to
 
 `AWS_SECRET_ACCESS_KEY` : the AWS secret ID
 
-`S3_ENPOINT` : the S3 o digialOceanSpaces Endpoint
+`S3_ENPOINT` : the S3 o digitalOceanSpaces Endpoint
 
 [Setup AWS credentials](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)
 
