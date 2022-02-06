@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { baseHttps } from "../utils/data"
 
 export const ImageForm = () => {
   const [file, setFile] = useState()
@@ -19,19 +20,15 @@ export const ImageForm = () => {
     const formData = new FormData()
     formData.append("image", file)
     formData.append("title", title)
-    await axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/api/images/upload`,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-        onUploadProgress(progressEvent) {
-          const upload = `${Math.round(
-            (progressEvent.loaded / progressEvent.total) * 100
-          )}`
-          setUploadImage(upload)
-        }
+    await baseHttps.post(`/api/images/upload`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      onUploadProgress(progressEvent) {
+        const upload = `${Math.round(
+          (progressEvent.loaded / progressEvent.total) * 100
+        )}`
+        setUploadImage(upload)
       }
-    )
+    })
     history.push("/")
   }
 

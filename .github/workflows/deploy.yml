@@ -1,4 +1,4 @@
-name: Deploy app
+name: Deploy App to Netlify
 
 on:
   push:
@@ -6,29 +6,26 @@ on:
       - develop
 
 jobs:
-  deploy-to-gh-pages:
+  deploy-to-netlify:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_ENDPOINT: ${{secrets.REACT_APP_ENDPOINT}}
     steps:
-     - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: '10.x'
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: "14.x"
       - name: Install
         run: yarn install
       - name: Build
-        run: | 
-            yarn predeploy
-            yarn deploy
-      - name: Deploy
-        uses: git@github.com:Deyvis17GY/react-gallery-deyvis.git
+        run: |
+          yarn build
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
+          args: deploy --dir=build --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
