@@ -11,14 +11,13 @@ export const ImageGallery = () => {
         `${process.env.REACT_APP_ENDPOINT}/api/images`
       )
       setImages(res.data)
-      console.log(
-        "🚀 ~ file: ImageGallery.js ~ line 6 ~ ImageGallery ~ images",
-        images,
-        process.env.REACT_APP_ENDPOINT
-      )
     })()
   }, [])
-
+  console.log(
+    "🚀 ~ file: ImageGallery.js ~ line 6 ~ ImageGallery ~ images",
+    images,
+    process.env.REACT_APP_ENDPOINT
+  )
   return images && images.length > 0 ? (
     <div className='container-image'>
       {images.map((image, index) => (
