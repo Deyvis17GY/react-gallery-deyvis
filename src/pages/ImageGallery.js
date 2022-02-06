@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 export const ImageGallery = () => {
   const [images, setImages] = useState([])
+
   const history = useHistory()
   useEffect(() => {
     ;(async () => {
@@ -10,10 +11,15 @@ export const ImageGallery = () => {
         `${process.env.REACT_APP_ENDPOINT}/api/images`
       )
       setImages(res.data)
+      console.log(
+        "🚀 ~ file: ImageGallery.js ~ line 6 ~ ImageGallery ~ images",
+        images,
+        process.env.REACT_APP_ENDPOINT
+      )
     })()
   }, [])
 
-  return images.length > 0 ? (
+  return images && images.length > 0 ? (
     <div className='container-image'>
       {images.map((image, index) => (
         <div
