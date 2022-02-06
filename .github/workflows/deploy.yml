@@ -3,32 +3,38 @@ name: Deploy app
 on:
   push:
     branches:
-      - develop
+      - feat/workflow
 
 jobs:
-  deploy-to-gh-pages:
-    runs-on: ubuntu-latest
-    steps:
-     - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install
-        run: yarn install
-      - name: Build
-        run: | 
-            yarn predeploy
-            yarn deploy
-      - name: Deploy
-        uses: git@github.com:Deyvis17GY/react-gallery-deyvis.git
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
+Explore-GitHub-Actions:
+  runs-on: ubuntu-latest
+  steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
+    - run: echo "🍏 This job's status is ${{ job.status }}."
+  # deploy-to-gh-pages:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #    - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '10.x'
+  #     - name: Install
+  #       run: yarn install
+  #     - name: Build
+  #       run: |
+  #           yarn predeploy
+  #           yarn deploy
+  #       with:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         BRANCH: gh-pages
+  #         FOLDER: build
