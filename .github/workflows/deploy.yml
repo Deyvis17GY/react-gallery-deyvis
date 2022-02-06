@@ -21,6 +21,6 @@ jobs:
           yarn predeploy
           yarn deploy
       - name: Deploy
-        uses: Deyvis17GY/react-gallery-deyvis/.github/workflows/deploy.yml@master
+        uses: Deyvis17GY/react-gallery-deyvis/.github/workflows/deploy.yml
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
