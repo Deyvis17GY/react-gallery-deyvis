@@ -8,10 +8,10 @@ export const ImageGallery = () => {
   useEffect(() => {
     ;(async () => {
       const res = await baseHttps.get(`/api/images`)
-      setImages(res.data)
+      res ? setImages(res.data) : setImages([])
     })()
   }, [])
-  console.log("images", images, baseHttps.get(`/api/images`))
+  console.log(images)
   return images && images.length > 0 ? (
     <div className='container-image'>
       {images.map((image, index) => (
