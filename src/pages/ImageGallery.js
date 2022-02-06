@@ -15,11 +15,7 @@ export const ImageGallery = () => {
       }
     })()
   }, [])
-  console.log(
-    "🚀 ~ file: ImageGallery.js ~ line 6 ~ ImageGallery ~ images",
-    images,
-    process.env.REACT_APP_ENDPOINT
-  )
+  console.log("images", images, process.env.REACT_APP_ENDPOINT)
   return images && images.length > 0 ? (
     <div className='container-image'>
       {images.map((image, index) => (
