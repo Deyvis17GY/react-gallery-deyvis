@@ -17,11 +17,7 @@ export const Navbar = () => {
           <button onClick={showNavbar} className='navbar-toggler'>
             <span className='navbar-toggler-icon'></span>
           </button>
-          <div
-            ref={navbar}
-            className='collapse navbar-collapse show'
-            id='navbarNav'
-          >
+          <div ref={navbar} className='collapse navbar-collapse' id='navbarNav'>
             <ul className='navbar-nav ms-auto'>
               <li className='nav-item'>
                 <Link
