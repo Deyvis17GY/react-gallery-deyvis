@@ -3,7 +3,7 @@ name: Deploy App to Netlify
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   deploy-to-netlify:
