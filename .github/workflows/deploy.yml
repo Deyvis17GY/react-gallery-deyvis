@@ -9,8 +9,7 @@ jobs:
   deploy-to-netlify:
     runs-on: ubuntu-latest
     env:
-      - name: REACT_APP_ENDPOINT
-        value: ${{secrets.REACT_APP_ENDPOINT}}
+      REACT_APP_ENDPOINT: ${{secrets.REACT_APP_ENDPOINT}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
