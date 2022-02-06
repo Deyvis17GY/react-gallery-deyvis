@@ -17,10 +17,10 @@ jobs:
       - name: Install
         run: yarn install
       - name: Build
-        run: |
-          yarn predeploy
-          yarn deploy
+        run: yarn predeploy
       - name: Deploy
-        uses: Deyvis17GY/react-gallery-deyvis/.github/workflows/deploy.yml
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: build
