@@ -1,21 +1,17 @@
-import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { baseHttps } from "../utils/data"
 export const ImageGallery = () => {
   const [images, setImages] = useState([])
 
   const history = useHistory()
   useEffect(() => {
     ;(async () => {
-      if (process.env.REACT_APP_ENDPOINT) {
-        const res = await axios.get(
-          `${process.env.REACT_APP_ENDPOINT}/api/images`
-        )
-        setImages(res.data)
-      }
+      const res = await baseHttps.get(`/api/images`)
+      setImages(res.data)
     })()
   }, [])
-  console.log("images", images, process.env.REACT_APP_ENDPOINT)
+  console.log("images", images, baseHttps.get(`/api/images`))
   return images && images.length > 0 ? (
     <div className='container-image'>
       {images.map((image, index) => (
