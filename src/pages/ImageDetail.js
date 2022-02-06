@@ -1,4 +1,3 @@
-import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory } from "react-router"
 import { baseHttps } from "../utils/data"
