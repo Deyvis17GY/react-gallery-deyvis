@@ -20,7 +20,7 @@ jobs:
         run: |
           yarn predeploy
           yarn deploy
-      - name: Build and Deploy
-        uses: Deyvis17GY/react-gallery-deyvis
+      - name: Deploy
+        uses: git@github.com:Deyvis17GY/react-gallery-deyvis.git
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
