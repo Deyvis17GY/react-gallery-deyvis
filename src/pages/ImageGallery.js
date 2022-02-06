@@ -7,10 +7,12 @@ export const ImageGallery = () => {
   const history = useHistory()
   useEffect(() => {
     ;(async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT}/api/images`
-      )
-      setImages(res.data)
+      if (process.env.REACT_APP_ENDPOINT) {
+        const res = await axios.get(
+          `${process.env.REACT_APP_ENDPOINT}/api/images`
+        )
+        setImages(res.data)
+      }
     })()
   }, [])
   console.log(
