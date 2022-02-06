@@ -1,6 +1,7 @@
-import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useParams, useHistory } from "react-router"
+import { baseHttps } from "../utils/data"
+
 export const ImageDetail = () => {
   const params = useParams()
   const history = useHistory()
@@ -15,18 +16,14 @@ export const ImageDetail = () => {
 
   const handleDelete = async () => {
     setIsDeleting(true)
-    await axios.delete(
-      `${process.env.REACT_APP_ENDPOINT}/api/images/${params.id}`
-    )
+    await baseHttps.delete(`/api/images/${params.id}`)
     setIsDeleting(false)
     history.push("/")
   }
 
   useEffect(() => {
     ;(async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_ENDPOINT}/api/images/${params.id}`
-      )
+      const res = await baseHttps.get(`/api/images/${params.id}`)
       setImage(res.data)
       setIsLoading(true)
     })()

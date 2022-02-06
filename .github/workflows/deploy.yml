@@ -1,0 +1,31 @@
+name: Deploy App to Netlify
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-to-netlify:
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_ENDPOINT: ${{secrets.REACT_APP_ENDPOINT}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install
+        run: yarn install
+      - name: Build
+        run: |
+          yarn build
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=build --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'

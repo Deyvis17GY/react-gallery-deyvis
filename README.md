@@ -39,7 +39,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd reacr-gallery-deyvis
+  cd react-gallery-deyvis
 ```
 
 Install dependencies
