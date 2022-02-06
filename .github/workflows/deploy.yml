@@ -9,17 +9,17 @@ jobs:
   deploy-to-gh-pages:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '10.x'
+          node-version: "10.x"
       - name: Install
         run: yarn install
       - name: Build
-        run: | 
-            yarn predeploy
-            yarn deploy
+        run: |
+          yarn predeploy
+          yarn deploy
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
