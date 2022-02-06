@@ -1,4 +1,4 @@
-name: Deploy app
+name: Deploy App to Netlify
 
 on:
   push:
@@ -6,8 +6,11 @@ on:
       - feat/workflow
 
 jobs:
-  deploy-to-gh-pages:
+  deploy-to-netlify:
     runs-on: ubuntu-latest
+    env:
+      - name: REACT_APP_ENDPOINT
+        value: ${{secrets.REACT_APP_ENDPOINT}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
