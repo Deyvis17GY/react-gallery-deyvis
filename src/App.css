@@ -30,3 +30,19 @@
     column-count: 1;
   }
 }
+
+/* Notify */
+
+.color-text {
+  background-color: #c82436;
+  color: #fff !important;
+}
+
+/* .notify__title {
+}
+.notify__text {
+  color: #f2f2f2 !important;
+} */
+.notify {
+  max-width: 80%;
+}
