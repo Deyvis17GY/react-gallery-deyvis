@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { baseHttps } from "../utils/data"
+import Compressor from "compressorjs"
+import Notify from "simple-notify"
+import "simple-notify/dist/simple-notify.min.css"
 
 export const ImageForm = () => {
   const [file, setFile] = useState()
@@ -10,25 +13,92 @@ export const ImageForm = () => {
   const history = useHistory()
 
   const handleChange = (event) => {
-    setFile(event.target.files[0])
+    const fileSelected = event.target.files[0]
+
+    setFile(fileSelected)
+  }
+
+  const pushNotify = (title = "upload successfully ", status = "success") => {
+    new Notify({
+      status,
+      title,
+      text: "",
+      effect: "slide",
+      speed: 300,
+      customClass: "color-text",
+      customIcon: null,
+      showIcon: true,
+      showCloseButton: false,
+      autoclose: true,
+      autotimeout: 1000,
+      gap: 20,
+      distance: 20,
+      type: 2,
+      position: "bottom x-center",
+      customWrapper: ""
+    })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
+
     const formData = new FormData()
-    formData.append("image", file)
-    formData.append("title", title)
-    await baseHttps.post(`/api/images/upload`, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-      onUploadProgress(progressEvent) {
-        const upload = `${Math.round(
-          (progressEvent.loaded / progressEvent.total) * 100
-        )}`
-        setUploadImage(upload)
+    const validExtensions = ["image/jpeg", "image/jpg", "image/png"]
+
+    try {
+      setLoading(true)
+      if (!file) {
+        setLoading(false)
+        pushNotify("Please select an image", "error")
+        return
       }
-    })
-    history.push("/")
+      const fileType = file.type
+
+      if (!validExtensions.includes(fileType)) {
+        setLoading(false)
+        pushNotify("Please select a valid image file", "error")
+        return
+      }
+      new Compressor(file, {
+        quality: 0.5,
+        async success(result) {
+          const newFile = new File([result], result.name, {
+            type: result.type,
+            lastModified: Date.now(),
+            size: result.size
+          })
+
+          formData.append("image", newFile)
+          formData.append("title", title)
+          const response = await baseHttps.post(
+            `/api/images/upload`,
+            formData,
+            {
+              headers: { "Content-Type": "multipart/form-data" },
+              onUploadProgress(progressEvent) {
+                const upload = `${Math.round(
+                  (progressEvent.loaded / progressEvent.total) * 100
+                )}`
+
+                setUploadImage(upload)
+              }
+            }
+          )
+
+          if (response.status === 200) {
+            setLoading(false)
+            pushNotify()
+            history.push("/")
+          }
+        },
+        error(err) {
+          console.error(err.message)
+          pushNotify(err.message, "error")
+        }
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
