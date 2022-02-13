@@ -11,8 +11,7 @@ import { Navbar } from "./components/Navbar"
 function App() {
   //version app
   console.log(
-    `%c🚀 ~ file: App.js ~ line 13 ~ App ~ version,
-    ${process.env.REACT_APP_VERSION}`,
+    "%c🚀 ~ file: App.js ~ line 13 ~ App ~ version 0.0.5",
     "font-size:12px"
   )
   return (
