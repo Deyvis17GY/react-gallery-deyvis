@@ -130,6 +130,7 @@ export const ImageForm = () => {
               type='file'
               className='form-control bg-dark text-light rounded-0'
               onChange={handleChange}
+              accept='image/*'
             />
             <div className='my-3'>
               <button
