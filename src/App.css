@@ -47,12 +47,6 @@
   max-width: 80%;
 }
 .container_fullscreen{
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  outline: 1px solid #c82436; */
   bottom: 0;
   left: 0;
   position: fixed;
@@ -72,7 +66,7 @@
   margin: auto;
 }
 .container_image{
-  width:100;
+  width:100%;
   margin: auto;
   position: relative;
 }
